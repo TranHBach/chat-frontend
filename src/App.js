@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import LiterallyAStraightLine from "./components/LiterallyAStraigtLine"
+import AllChat from "./components/AllChat/AllChat";
+import CurrentChat from "./components/CurrentChat/CurrentChat";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  return <div className="container">
+    <div className="outline">
+      <section className="chat-section">
+        <AllChat />
+        <LiterallyAStraightLine />
+        <CurrentChat />
+      </section>
     </div>
-  );
+  </div>;
 }
 
 export default App;

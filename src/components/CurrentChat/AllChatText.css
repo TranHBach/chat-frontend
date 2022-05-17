@@ -1,0 +1,10 @@
+.all-text {
+  display: flex;
+  height: 80%;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding-bottom: 1.2rem;
+  border-bottom: 2px solid #bac8ff;
+
+  /* overflow: hidden; */
+}

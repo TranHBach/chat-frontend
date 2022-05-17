@@ -1,0 +1,3 @@
+Make the chat text scollable, make the text auto new line (may be later)
+Get maximum width of parent
+https://stackoverflow.com/questions/90178/make-a-div-fill-the-height-of-the-remaining-screen-space

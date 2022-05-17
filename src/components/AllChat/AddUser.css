@@ -1,0 +1,25 @@
+.input-user {
+    width: 80%;
+    border: none;
+    background-color: #e9ecef;
+    font-size: 1.6rem;
+    padding: 0.8rem 1.6rem;
+}
+
+.add-user {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-radius: 9999px;
+    background-color: #e9ecef;
+}
+
+.add-user label {
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+
+.input-user:focus {
+    outline: none;
+}

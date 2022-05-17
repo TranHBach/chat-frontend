@@ -1,0 +1,31 @@
+.send-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.send-text {
+  /* padding-top: 1.2rem;
+  margin-top: 1.2rem; */
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  height: 6rem;
+}
+
+.send-text input {
+  border-radius: 999px;
+  width: 90%;
+  border: none;
+  background-color: #e9ecef;
+  font-size: 1.6rem;
+  padding: 0.8rem 1.6rem;
+}
+
+.send-text input:focus {
+  outline: none;
+}
+
+.send-text label {
+  width: 2.4rem;
+  height: 2.4rem;
+}
