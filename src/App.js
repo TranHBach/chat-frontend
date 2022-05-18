@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import LiterallyAStraightLine from "./components/LiterallyAStraigtLine"
+import LiterallyAStraightLine from "./components/Helpers/LiterallyAStraigtLine"
 import AllChat from "./components/AllChat/AllChat";
 import CurrentChat from "./components/CurrentChat/CurrentChat";
 
