@@ -1,9 +1,43 @@
+import { useContext, useRef } from "react";
+import AuthContext from "../../stores/AuthContext";
 import "./AddUser.css";
 
 function AddUser() {
+  const userNameRef = useRef();
+  const ctxValue = useContext(AuthContext);
+  function addUserHandler(event) {
+    event.preventDefault();
+    fetch("http://localhost:8080/addUser", {
+      method: "POST",
+      body: JSON.stringify({
+        friendName: userNameRef.current.value,
+      }),
+      headers: {
+        Authorization: "Bearer " + ctxValue.token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((IDs) => {
+        ctxValue.dispatchAllChat({
+          type: "addUser",
+          userId: IDs.userId,
+          username: userNameRef.current.value,
+          friendId: IDs.friendId,
+          content: [
+            {
+              text: "Hello, I just added you as a friend",
+              send: true,
+              receive: false,
+            },
+          ],
+        });
+        userNameRef.current.value = "";
+      });
+  }
   return (
-    <div className="add-user">
-      <input id="user-input" className="input-user"></input>
+    <form onSubmit={addUserHandler} className="add-user">
+      <input ref={userNameRef} id="user-input" className="input-user"></input>
       <label htmlFor="user-input">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +53,7 @@ function AddUser() {
           />
         </svg>
       </label>
-    </div>
+    </form>
   );
 }
 

@@ -1,19 +1,17 @@
-import logo from "./logo.svg";
 import "./App.css";
-import LiterallyAStraightLine from "./components/Helpers/LiterallyAStraigtLine"
-import AllChat from "./components/AllChat/AllChat";
-import CurrentChat from "./components/CurrentChat/CurrentChat";
+import Main from "./pages/Main"; 
+import { Route, Routes } from "react-router-dom";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 function App() {
-  return <div className="container">
-    <div className="outline">
-      <section className="chat-section">
-        <AllChat />
-        <LiterallyAStraightLine />
-        <CurrentChat />
-      </section>
-    </div>
-  </div>;
+  return (
+    <Routes>
+      <Route path="/" element={<Main />}></Route>
+      <Route path="/signup" element={<Signup />}></Route>
+      <Route path="/login" element={<Login />}/>
+    </Routes>
+  );
 }
 
 export default App;

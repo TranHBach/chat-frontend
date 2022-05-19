@@ -1,13 +1,40 @@
-import "./SendText.css"
+import { useContext, useRef } from "react";
+import AuthContext from "../../stores/AuthContext";
+import "./SendText.css";
 
-function SendText() {
+function SendText(props) {
+  const ctxValue = useContext(AuthContext);
+  const chatTextRef = useRef();
+
+  function sendChatHandler(event) {
+    event.preventDefault();
+    fetch("http://localhost:8080/chat/send", {
+      method: "POST",
+      body: JSON.stringify({
+        content: chatTextRef.current.value,
+        toID: ctxValue.currentReceiverID,
+      }),
+      headers: {
+        Authorization: "Bearer " + ctxValue.token,
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      ctxValue.dispatchAllChat({
+        type: "addChat",
+        index: props.currentIndex,
+        content: { text: chatTextRef.current.value, send: true, receive: false },
+      });
+      chatTextRef.current.value = ""
+    });
+  }
+
   return (
-    <div className="send-text">
-      <input id="input-text"/>
+    <form onSubmit={sendChatHandler} className="send-text">
+      <input ref={chatTextRef} id="input-text" />
       <label htmlFor="input-text">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="send-icon"
+          className="send-icon"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -20,8 +47,8 @@ function SendText() {
           />
         </svg>
       </label>
-    </div>
+    </form>
   );
 }
 
-export default SendText
+export default SendText;

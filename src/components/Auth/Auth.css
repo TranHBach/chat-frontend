@@ -1,0 +1,36 @@
+.auth-box {
+  padding: 1.2rem 2.4rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.2rem;
+}
+
+.auth-box button {
+  border: 1px solid #4263eb;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  font-size: 1.4rem;
+}
+
+.btn-login {
+  background-color: #fff;
+  color: #4263eb;
+}
+
+.btn-signup {
+  font-weight: 600;
+  background-color: #4263eb;
+  color: #fff;
+}
+
+.btn-login:hover {
+  background-color: #f1f3f5;
+}
+
+.btn-signup:hover {
+  background-color: #3b5bdb;
+}
+
+.auth-box button:hover {
+  cursor: pointer;
+}
