@@ -8,6 +8,7 @@ function chatReducer(state, action) {
     case "initial":
       return action.all;
     case "addChat":
+      console.log(action)
       newState = JSON.parse(JSON.stringify(state));
       newState[action.index].content.push(action.content);
       return newState;
@@ -25,7 +26,7 @@ function chatReducer(state, action) {
 export const AuthContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [currentReceiverID, setcurrentReceiverID] = useState(
-    "628501960d2d283f08f58725"
+    "6284d1f3f51b63d64cb1634b"
   );
   const [allChat, dispatchAllChat] = useReducer(chatReducer, []);
   const ctxValue = {

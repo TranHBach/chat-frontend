@@ -2,6 +2,14 @@ import { useContext, useRef } from "react";
 import AuthContext from "../../stores/AuthContext";
 import "./SendText.css";
 
+function compareId(id1, id2) {
+  if (id1 > id2) {
+    return id1 + id2;
+  } else {
+    return id2 + id1;
+  }
+}
+
 function SendText(props) {
   const ctxValue = useContext(AuthContext);
   const chatTextRef = useRef();
@@ -19,12 +27,21 @@ function SendText(props) {
         "Content-Type": "application/json",
       },
     }).then(() => {
-      ctxValue.dispatchAllChat({
+      const dispatchValue = {
         type: "addChat",
         index: props.currentIndex,
-        content: { text: chatTextRef.current.value, send: true, receive: false },
+        content: {
+          text: chatTextRef.current.value,
+          send: true,
+          receive: false,
+        },
+      };
+      chatTextRef.current.value = "";
+      props.socket.emit("send", {
+        roomNum: compareId(ctxValue.allChat[props.currentIndex].from, ctxValue.allChat[props.currentIndex].to._id),
       });
-      chatTextRef.current.value = ""
+      props.onClickHandler.bind(null, false)
+      ctxValue.dispatchAllChat(dispatchValue);
     });
   }
 

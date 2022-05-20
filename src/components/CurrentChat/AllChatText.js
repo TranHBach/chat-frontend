@@ -1,8 +1,12 @@
-import "./AllChatText.css"
-
+import "./AllChatText.css";
+import IsTyping from "./IsTyping";
 function AllChatText(props) {
-    // May use global state here
-    return <div className="all-text">{props.children}</div>
+  return (
+    <div className="all-text">
+      {props.children}
+      <IsTyping />
+    </div>
+  );
 }
 
-export default AllChatText
+export default AllChatText;

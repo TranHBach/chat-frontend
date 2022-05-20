@@ -5,13 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./stores/AuthContext";
+import { io } from "socket.io-client";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const socket = io("ws://localhost:8080/")
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthContextProvider>
-        <App />
+        <App socket={socket}/>
       </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>
