@@ -5,6 +5,8 @@ import ChatText from "./ChatText";
 import "./CurrentChat.css";
 import SendText from "./SendText";
 
+let currentIndex;
+let senderId;
 function compareId(id1, id2) {
   if (id1 > id2) {
     return id1 + id2;
@@ -14,8 +16,8 @@ function compareId(id1, id2) {
 }
 
 function CurrentChat(props) {
+  const [isTyping, setIsTyping] = useState(false);
   const ctxValue = useContext(AuthContext);
-  let currentIndex;
   const currentChatItem = ctxValue.allChat.filter((element, index) => {
     if (element.to._id === ctxValue.currentReceiverID) {
       currentIndex = index;
@@ -29,30 +31,28 @@ function CurrentChat(props) {
     currentChatItem[0].content.forEach((element, index) => {
       allChatText.push(
         <ChatText
-        key={index}
-        from={element.send ? "you" : "other"}
-        text={element.text}
+          key={index}
+          from={element.send ? "you" : "other"}
+          text={element.text}
         />
-        );
-      });
-    } catch {}
-
-    const [isTyping, setIsTyping] = useState(false);
+      );
+    });
+    senderId = currentChatItem[0].to._id;
+    console.log(senderId)
     if (isTyping) {
       props.socket.emit("typing", {
-        roomNum: compareId(
-          ctxValue.allChat[props.currentIndex].from,
-          ctxValue.allChat[props.currentIndex].to._id
-        ),
-        from: ctxValue.allChat[props.currentIndex].from
+        roomNum: compareId(currentChatItem[0].from, currentChatItem[0].to._id),
+        from: currentChatItem[0].from,
       });
     }
-    return (
-      <div className="current-chat">
+  } catch {}
+
+  return (
+    <div className="current-chat">
       <h1>
         {currentChatItem.length !== 0 ? currentChatItem[0].to.username : "Name"}
       </h1>
-      <AllChatText>
+      <AllChatText socket={props.socket} senderId={senderId}>
         {allChatText}
         {/* <ChatText from="you" text="awdawd"/>
           <ChatText from="other" text="awdawd"/>

@@ -47,7 +47,7 @@ function SendText(props) {
 
   return (
     <form onSubmit={sendChatHandler} className="send-text">
-      <input ref={chatTextRef} id="input-text" />
+      <input onClick={props.onClickHandler.bind(null, true)} ref={chatTextRef} id="input-text" />
       <label htmlFor="input-text">
         <svg
           xmlns="http://www.w3.org/2000/svg"
